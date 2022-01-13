@@ -175,16 +175,15 @@
   ([remap describe-variable] . counsel-describe-variable)
   ([remap describe-key] . helpful-key))
 
-
 ;; org
 (use-package org
   :config
   (setq org-hide-leading-stars 1)
   (setq org-indent-mode 1)
   (setq org-startup-indented t)
-  (setq visual-line-mode 1)
   (setq org-ellipsis " ▾"
-	org-hide-emphasis-markers t))
+	org-hide-emphasis-markers t)
+  :hook (org-mode . visual-line-mode))
 ;(setq org-todo-keywords '((sequence "(TODO(t)" "|" "DONE(d)")
 ;			  (sequence "(KILL(k)")))
 (require 'org-tempo)
