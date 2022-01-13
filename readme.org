@@ -1,0 +1,2 @@
+* Emacs
+This is my own emacs config
