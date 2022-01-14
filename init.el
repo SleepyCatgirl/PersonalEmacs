@@ -282,4 +282,3 @@
 ;; PDF
 (use-package pdf-tools
   :init (pdf-tools-install))
-(custom-set-variables
