@@ -300,3 +300,10 @@
 ;; PDF
 (use-package pdf-tools
   :init (pdf-tools-install))
+
+
+;; Vterm - better terminal
+;; Replace in CmakeLists.txt:
+;;        libvterm.a -> libvterm.so
+;;        STATIC -> SHARED
+(use-package vterm)
