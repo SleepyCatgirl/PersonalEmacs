@@ -283,15 +283,3 @@
 (use-package pdf-tools
   :init (pdf-tools-install))
 (custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   '(forge which-key use-package solaire-mode smartparens sly rainbow-delimiters pdf-tools paredit org-roam nix-mode magit macrostep ivy-rich ivy-prescient hydra helpful haskell-mode general evil-collection erc-image erc-colorize doom-themes doom-modeline diminish counsel-projectile)))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
