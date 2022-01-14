@@ -282,6 +282,7 @@
 (use-package smartparens
   :hook (prog-mode . smartparens-mode))
 ;; LSP
+(use-package company) ;; lsp autocompletion
 (use-package lsp-mode
   :commands (lsp lsp-deferred)
   :init (setq lsp-keymap-prefix "C-c l")
