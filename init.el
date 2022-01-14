@@ -183,6 +183,10 @@
   (setq org-startup-indented t)
   (setq org-ellipsis " ▾"
 	org-hide-emphasis-markers t)
+  (setq org-agenda-start-with-log-mode t)
+  (setq org-log-done 'time)
+  (setq org-log-into-drawer t)
+  (setq org-agenda-files '("~/org-roam/20220102222924-to_do.org"))
   :hook (org-mode . visual-line-mode))
 ;(setq org-todo-keywords '((sequence "(TODO(t)" "|" "DONE(d)")
 ;			  (sequence "(KILL(k)")))
@@ -277,6 +281,20 @@
   :hook (lisp-mode . paredit-mode))
 (use-package smartparens
   :hook (prog-mode . smartparens-mode))
+;; LSP
+(use-package lsp-mode
+  :commands (lsp lsp-deferred)
+  :init (setq lsp-keymap-prefix "C-c l")
+  :config (lsp-enable-which-key-integration t))
+(use-package lsp-ivy
+  :commands lsp-ivy-workspace-symbol)
+;; C++
+(use-package ccls
+  :hook (c++-mode . lsp-deferred))
+;; Haskell
+(use-package lsp-haskell
+  :hook (haskell-mode . lsp-deferred)
+        (haskell-literate-mode . lsp-deferred))
 
 
 ;; PDF
