@@ -291,7 +291,8 @@
   :commands lsp-ivy-workspace-symbol)
 ;; C++
 (use-package ccls
-  :hook (c++-mode . lsp-deferred))
+  :hook (c++-mode . lsp-deferred)
+        (c++-mode . company-mode))
 ;; Haskell
 (use-package lsp-haskell
   :hook (haskell-mode . lsp-deferred)
@@ -307,4 +308,4 @@
 ;; Replace in CmakeLists.txt:
 ;;        libvterm.a -> libvterm.so
 ;;        STATIC -> SHARED
-(use-package vterm)
+;(use-package vterm)
