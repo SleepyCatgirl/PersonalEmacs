@@ -281,8 +281,8 @@
   :hook (lisp-mode . paredit-mode))
 (use-package smartparens
   :hook (prog-mode . smartparens-mode))
+(use-package company)
 ;; LSP
-(use-package company) ;; lsp autocompletion
 (use-package lsp-mode
   :commands (lsp lsp-deferred)
   :init (setq lsp-keymap-prefix "C-c l")
@@ -296,7 +296,9 @@
 ;; Haskell
 (use-package lsp-haskell
   :hook (haskell-mode . lsp-deferred)
-        (haskell-literate-mode . lsp-deferred))
+  (haskell-literate-mode . lsp-deferred)
+  (haskell-mode . company-mode)
+  (haskell-literate-mode . company-mode))
 
 
 ;; PDF
