@@ -281,8 +281,8 @@
   :hook (lisp-mode . paredit-mode))
 (use-package smartparens
   :hook (prog-mode . smartparens-mode))
-(use-package company)
 ;; LSP
+(use-package company) ;; lsp autocompletion
 (use-package lsp-mode
   :commands (lsp lsp-deferred)
   :init (setq lsp-keymap-prefix "C-c l")
@@ -311,3 +311,31 @@
 ;;        libvterm.a -> libvterm.so
 ;;        STATIC -> SHARED
 ;(use-package vterm)
+(use-package skewer-mode
+  :hook (js2-mode . skewer-mode)
+  (html-mode . skewer-html-mode)
+  (css-mode . skewer-css-mode))
+(use-package js2-mode)
+(use-package css-mode)
+
+;; Music, emms -> MPD
+(use-package emms
+  :ensure t
+  :config
+  (emms-all)
+  (require 'emms-player-mpd)
+  (require 'emms-setup)
+;;  (setq emms-source-file-default-directory "~/Music")
+;; (emms-add-directory-tree "~/Music")
+  ;;  (add-to-list 'emms-info-functions 'emms-info-mpd)
+  (add-to-list 'emms-info-functions 'emms-info-mpd)
+  (add-to-list 'emms-player-list 'emms-player-mpd)
+  (setq emms-player-server-port "6600")
+  (setq emms-player-mpd-music-directory "~/Music")
+  (emms-player-mpd-connect))
+;  :bind (:map Emms-Browser
+;	      ("C-x C-f" . emms-browser-add-tracks-and-play)))
+;  ("C-x C-p" . emms-player-mpd-pause)
+;  ("C-x C-n" . emms-player-mpd-next)
+;  ("C-x C-e" . emms-browser-add-tracks-and-play))  
+
