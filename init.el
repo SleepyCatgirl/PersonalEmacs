@@ -315,8 +315,15 @@
   :hook (js2-mode . skewer-mode)
   (html-mode . skewer-html-mode)
   (css-mode . skewer-css-mode))
-(use-package js2-mode)
+(use-package js2-mode
+  :hook (js-mode . js2-mode))
 (use-package css-mode)
+;; Live html
+;; Start server with httpd-start
+;; use impatient-mode on buffers
+(use-package impatient-mode)
+(setq httpd-root "/home/senchou/Programming/HTML/Nya/")
+
 
 ;; Music, emms -> MPD
 (use-package emms
