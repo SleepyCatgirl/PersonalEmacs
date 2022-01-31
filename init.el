@@ -299,7 +299,11 @@
   (haskell-literate-mode . lsp-deferred)
   (haskell-mode . company-mode)
   (haskell-literate-mode . company-mode))
-
+;; Clojure
+(use-package clojure-mode
+  :hook (clojure-mode . lsp-deferred)
+        (clojurescript-mode-hook . lsp-deferred))
+(use-package cider)
 
 ;; PDF
 (use-package pdf-tools
