@@ -206,6 +206,11 @@
 (org-roam-db-autosync-mode)
 ;; LaTeX Preview size
 (setq org-format-latex-options (plist-put org-format-latex-options :scale 1.5))
+;; Latex imagemagick + tikz
+(setq org-latex-create-formula-image-program 'imagemagick)
+(setq org-latex-packages-alist
+      '(("" "tikz" t)
+        ("" "tikz-cd" t)))
 
 
 ;; solaier mode for aesthics
