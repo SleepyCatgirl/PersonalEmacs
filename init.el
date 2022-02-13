@@ -278,6 +278,8 @@
 ; Haskell
 (use-package haskell-mode
   :hook (haskell-mode . interactive-haskell-mode))
+;; Use stack for haskell repl
+(setq haskell-process-type 'stack-ghci)
 ;(add-hook 'haskell-mode-hook 'interactive-haskell-mode)
 ;; Common Lisp 
 (use-package sly)
