@@ -20,6 +20,25 @@
 ;; Make ESC quit prompts (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
 
 
+;; Remembmer last place visited in file
+(save-place-mode 1)
+
+;; Move customization vars to separate file and load it
+(setq custom-file (locate-user-emacs-file "custom-vars.el"))
+(load custom-file 'noerror 'nomessage)
+
+;; Dont pop up UI dialogs
+(setq use-dialog-box nil)
+;; Use minibuffer for pgp passphase instead of GTK window
+(setq epg-pinentry-mode 'loopback)
+;; Revert buffer if file on disk has been changed
+;; 0 for no, 1 for yes
+(global-auto-revert-mode 1)
+
+
+;; Remember recently edited files (recentf)
+(recentf-mode 1)
+
 (require 'package)
 (setq package-archives '(("melpa" . "https://melpa.org/packages/")
                          ("org" . "https://orgmode.org/elpa/")
@@ -43,7 +62,9 @@
 ;; That hides from list of enabled modes
 (use-package diminish)
 
-
+;; undo tree
+(use-package undo-tree)
+(global-undo-tree-mode)
 ;; Ivy completion
 (use-package ivy
   :diminish
@@ -215,7 +236,10 @@
 
 ;; solaier mode for aesthics
 (use-package solaire-mode
-  :init (solaire-global-mode +1))
+  :demand
+  :init
+  :config
+  (solaire-global-mode +1))
 
 
 ;; keybinding package
@@ -307,9 +331,9 @@
   (haskell-mode . company-mode)
   (haskell-literate-mode . company-mode))
 ;; Clojure
-(use-package clojure-mode
-  :hook (clojure-mode . lsp-deferred)
-        (clojurescript-mode-hook . lsp-deferred))
+(use-package clojure-mode)
+;  :hook (clojure-mode . lsp-deferred)
+;       (clojurescript-mode-hook . lsp-deferred))
 (use-package cider)
 
 ;; PDF
@@ -321,39 +345,43 @@
 ;; Replace in CmakeLists.txt:
 ;;        libvterm.a -> libvterm.so
 ;;        STATIC -> SHARED
-;(use-package vterm)
+					;(use-package vterm)
+
+;; Web dev
 (use-package skewer-mode
   :hook (js2-mode . skewer-mode)
   (html-mode . skewer-html-mode)
   (css-mode . skewer-css-mode))
-(use-package js2-mode
-  :hook (js-mode . js2-mode))
-(use-package css-mode)
+(use-package js2-mode)
+(use-package css-mode)  
 ;; Live html
 ;; Start server with httpd-start
 ;; use impatient-mode on buffers
 (use-package impatient-mode)
-(setq httpd-root "/home/senchou/Programming/HTML/Nya/")
+;;(setq httpd-root "/home/senchou/Programming/HTML/Nya/")
+
 
 
 ;; Music, emms -> MPD
-(use-package emms
-  :ensure t
-  :config
-  (emms-all)
-  (require 'emms-player-mpd)
-  (require 'emms-setup)
-;;  (setq emms-source-file-default-directory "~/Music")
-;; (emms-add-directory-tree "~/Music")
-  ;;  (add-to-list 'emms-info-functions 'emms-info-mpd)
-  (add-to-list 'emms-info-functions 'emms-info-mpd)
-  (add-to-list 'emms-player-list 'emms-player-mpd)
-  (setq emms-player-server-port "6600")
-  (setq emms-player-mpd-music-directory "~/Music")
-  (emms-player-mpd-connect))
-;  :bind (:map Emms-Browser
+;;(use-package emms
+;;  :ensure t
+;;  :config
+;;  (emms-all)
+;;  (require 'emms-player-mpd)
+;;  (require 'emms-setup)
+;;;;  (setq emms-source-file-default-directory "~/Music")
+;;;; (emms-add-directory-tree "~/Music")
+;;  ;;  (add-to-list 'emms-info-functions 'emms-info-mpd)
+;;  (add-to-list 'emms-info-functions 'emms-info-mpd)
+;;  (add-to-list 'emms-player-list 'emms-player-mpd)
+;;  (setq emms-player-server-port "6600")
+;;  (setq emms-player-mpd-music-directory "~/Music")
+;;  (emms-player-mpd-connect))
+;;;  :bind (:map Emms-Browser
 ;	      ("C-x C-f" . emms-browser-add-tracks-and-play)))
 ;  ("C-x C-p" . emms-player-mpd-pause)
 ;  ("C-x C-n" . emms-player-mpd-next)
 ;  ("C-x C-e" . emms-browser-add-tracks-and-play))  
+
+
 
