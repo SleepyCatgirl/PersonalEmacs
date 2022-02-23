@@ -86,6 +86,9 @@
 
 ;;(global-set-key (kbd "C-M-j") 'counsel-switch-buffer)
 ;;(define-key emacs-lisp-mode-map (kbd "C-x M-t") 'counsel-load-theme)
+;; Ivy icons
+(use-package all-the-icons-ivy-rich
+  :init (all-the-icons-ivy-rich-mode 1))
 ;; extra information in ivy
 (use-package ivy-rich
   :init
