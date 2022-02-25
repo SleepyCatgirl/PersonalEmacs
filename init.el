@@ -235,7 +235,8 @@
 (setq org-latex-packages-alist
       '(("" "tikz" t)
         ("" "tikz-cd" t)))
-
+;; Pomodoro
+;;(setq org-clock-sound "")
 
 ;; solaier mode for aesthics
 (use-package solaire-mode
@@ -385,6 +386,5 @@
 ;  ("C-x C-p" . emms-player-mpd-pause)
 ;  ("C-x C-n" . emms-player-mpd-next)
 ;  ("C-x C-e" . emms-browser-add-tracks-and-play))  
-
 
 
