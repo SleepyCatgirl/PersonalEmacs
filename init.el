@@ -13,7 +13,9 @@
 (setq visible-bell t)
 
 ;; Setting font
-(set-face-attribute 'default nil :font "SF Mono Powerline" :height 120)
+(set-face-attribute 'default nil :font "Termsyn" :height 110)
+;;(set-face-attribute 'default nil :font "SF Mono Powerline" :height 120)
+
 
 ;; Set pretty theme
 ;;(load-theme 'wombat)
@@ -121,7 +123,7 @@
 (use-package doom-themes
   :config
   (doom-themes-org-config)
-  (load-theme 'doom-gruvbox t))
+  (load-theme 'doom-one t))
 ;; doom mode line
 (use-package doom-modeline
   :ensure t
@@ -211,6 +213,11 @@
   (setq org-log-done 'time)
   (setq org-log-into-drawer t)
   (setq org-agenda-files '("~/org-roam/20220102222924-to_do.org"))
+  (setq org-todo-keywords
+	'((sequence "TODO(t)" "STRT(s)" "|" "KILL(k)" "DONE(d!)")))
+  (setq org-todo-keyword-faces
+	'(("STRT" . "yellow")
+	  ("KILL" . "red")))
   :hook (org-mode . visual-line-mode))
 ;(setq org-todo-keywords '((sequence "(TODO(t)" "|" "DONE(d)")
 ;			  (sequence "(KILL(k)")))
@@ -219,6 +226,8 @@
 (org-babel-do-load-languages 'org-babel-load-languages
 			     '((shell .t)
 			       (C . t)
+			       (haskell . t)
+			       (clojure .t)
 			       (lisp . t)))
 (setq org-babel-lisp-eval-fn 'sly-eval)
 ;; Dont ask for eval conf
@@ -235,8 +244,7 @@
 (setq org-latex-packages-alist
       '(("" "tikz" t)
         ("" "tikz-cd" t)))
-;; Pomodoro
-;;(setq org-clock-sound "")
+
 
 ;; solaier mode for aesthics
 (use-package solaire-mode
@@ -310,7 +318,8 @@
 (setq haskell-process-type 'stack-ghci)
 ;(add-hook 'haskell-mode-hook 'interactive-haskell-mode)
 ;; Common Lisp 
-(use-package sly)
+(use-package sly
+  :hook (lisp-mode . company-mode))
 (setq inferior-lisp-program "/run/current-system/sw/bin/sbcl")
 (use-package paredit
   :hook (lisp-mode . paredit-mode))
@@ -328,6 +337,7 @@
 (use-package ccls
   :hook (c++-mode . lsp-deferred)
         (c++-mode . company-mode))
+      
 ;; Haskell
 (use-package lsp-haskell
   :hook (haskell-mode . lsp-deferred)
@@ -335,7 +345,9 @@
   (haskell-mode . company-mode)
   (haskell-literate-mode . company-mode))
 ;; Clojure
-(use-package clojure-mode)
+(use-package clojure-mode
+  :config
+  (setq org-babel-clojure-backend 'cider))
 ;  :hook (clojure-mode . lsp-deferred)
 ;       (clojurescript-mode-hook . lsp-deferred))
 (use-package cider)
@@ -388,3 +400,28 @@
 ;  ("C-x C-e" . emms-browser-add-tracks-and-play))  
 
 
+
+;; For wayland river:
+;; To not show GTK
+(setq default-frame-alist '((undecorated . t)))
+(use-package sql-indent)
+
+
+
+;; Use external converters for exotic formats
+;; images
+(setq image-use-external-converter t)
+
+
+;; webkit
+;;(add-to-list 'load-path "~/Projects/emacs-webkit")
+;;(require 'webkit)
+;;(require 'webkit-ace)
+;;(use-package evil-collection-webkit
+;;  :load-path "~/Projects/emacs-webkit/"
+;;  :config
+;;  (evil-collection-xwidget-setup))
+
+;; Browser by def.
+(setq browse-url-generic-program "google-chrome")
+(setq browser-url-browser-function 'browse-url-generic)
