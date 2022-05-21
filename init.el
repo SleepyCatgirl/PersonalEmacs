@@ -216,8 +216,8 @@
   (setq org-todo-keywords
 	'((sequence "TODO(t)" "STRT(s)" "|" "KILL(k)" "DONE(d!)")))
   (setq org-todo-keyword-faces
-	'(("STRT" . "yellow")
-	  ("KILL" . "red")))
+	'(("STRT" . "DarkGoldenrod1")
+	  ("KILL" . "sienna2")))
   :hook (org-mode . visual-line-mode))
 ;(setq org-todo-keywords '((sequence "(TODO(t)" "|" "DONE(d)")
 ;			  (sequence "(KILL(k)")))
