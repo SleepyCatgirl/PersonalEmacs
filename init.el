@@ -123,7 +123,7 @@
 (use-package doom-themes
   :config
   (doom-themes-org-config)
-  (load-theme 'doom-one t))
+  (load-theme 'doom-miramare t))
 ;; doom mode line
 (use-package doom-modeline
   :ensure t
@@ -361,7 +361,7 @@
 ;; Replace in CmakeLists.txt:
 ;;        libvterm.a -> libvterm.so
 ;;        STATIC -> SHARED
-					;(use-package vterm)
+(use-package vterm)
 
 ;; Web dev
 (use-package skewer-mode
@@ -425,3 +425,68 @@
 ;; Browser by def.
 (setq browse-url-generic-program "google-chrome")
 (setq browser-url-browser-function 'browse-url-generic)
+
+
+
+;; extended shell
+(use-package shx)
+
+
+;; prolog
+
+(use-package ediprolog)
+(defun edi-prol-bind ()
+  "Bind C-c C-e to dwim ediprolog"
+  (local-set-key (kbd "C-c C-e") 'ediprolog-dwim))
+(add-hook 'prolog-mode-hook 'edi-prol-bind)
+(setq ediprolog-system 'swi)
+(setq ediprolog-program "/run/current-system/sw/bin/swipl")
+
+
+;; Julia
+(use-package markdown-mode)
+;;(use-package julia-snail)
+;; R R R WONDERS
+(use-package ess)
+
+;; N O V E L
+(use-package nov)
+(use-package nov-xwidget
+  :load-path "~/.emacs.d/custom/nov-xwidget.el"
+  :defer t
+  :after nov
+  :config
+  (map! :map nov-mode-map
+        :n "gv" 'nov-xwidget-view)
+  (add-hook 'nov-mode-hook 'nov-xwidget-inject-all-files))
+
+
+;; Non-ascii stuff in tables
+(use-package valign)
+
+
+
+;; Dired replacement
+(use-package dirvish
+  ;;https://github.com/alexluigit/dirvish/blob/main/CUSTOMIZING.org
+  ;;Resource to cursomize dirvish
+  :init
+  (dirvish-override-dired-mode)
+  :custom
+  (dirvish-bookmark-entries
+   '(("h" "~/"           "Home")
+     ("d" "~/Downloads/" "Downloads")
+     ("D" "/run/media/HDD/" "HDD")))
+  :config
+  (evil-set-initial-state 'dirvish-mode 'emacs)
+  :bind
+  (;; (global-unset-key (kbd "C-x")) If want to unbind dired
+   ("C-c d" . dirvish)
+   :map dirvish-mode-map
+   ("C-c b" . dirvish-bookmark-jump)
+   ("h" . dired-up-directory)
+   ("j" . dired-next-line)
+   ("k" . dired-previous-line)
+   ("l" . dired-find-line)
+   ("d" . dired-display-file)
+   ("s" . dirvish-quicksort)))
