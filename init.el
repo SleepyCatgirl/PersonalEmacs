@@ -38,6 +38,9 @@
 (global-auto-revert-mode 1)
 
 
+;; Calculator, prevent out of sync
+(setq calc-make-windows-dedicated t)
+
 ;; Remember recently edited files (recentf)
 (recentf-mode 1)
 
@@ -66,7 +69,8 @@
 
 ;; undo tree
 (use-package undo-tree)
-(global-undo-tree-mode)
+;;(global-undo-tree-mode)
+(global-undo-tree-mode -1)
 ;; Ivy completion
 (use-package ivy
   :diminish
@@ -245,7 +249,6 @@
       '(("" "tikz" t)
         ("" "tikz-cd" t)))
 
-
 ;; solaier mode for aesthics
 (use-package solaire-mode
   :demand
@@ -361,7 +364,7 @@
 ;; Replace in CmakeLists.txt:
 ;;        libvterm.a -> libvterm.so
 ;;        STATIC -> SHARED
-(use-package vterm)
+;(use-package vterm)
 
 ;; Web dev
 (use-package skewer-mode
@@ -452,12 +455,12 @@
 ;; N O V E L
 (use-package nov)
 (use-package nov-xwidget
-  :load-path "~/.emacs.d/custom/nov-xwidget.el"
+  :load-path "~/.emacs.d/custom/"
   :defer t
   :after nov
   :config
-  (map! :map nov-mode-map
-        :n "gv" 'nov-xwidget-view)
+;;  (map! :map nov-mode-map
+;;        :n "gv" 'nov-xwidget-view)
   (add-hook 'nov-mode-hook 'nov-xwidget-inject-all-files))
 
 
@@ -490,3 +493,7 @@
    ("l" . dired-find-line)
    ("d" . dired-display-file)
    ("s" . dirvish-quicksort)))
+
+
+
+;(use-package weechat)
